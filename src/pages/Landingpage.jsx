@@ -1,115 +1,9 @@
-// import React, { useState } from 'react'
-// import Header from '../components/Header'
-// import Footer from '../components/Footer'
-
-// const Landingpage = () => {
-
-//   const [calcu , setcalcu] = useState(false)
-//   const [loanvalue , setloanvalue] = useState(0)
-//   const [loantimeperiod , setloantimeperiod] = useState(0)
-// const handlecalculation = ()=>{
-//   setcalcu(true)
-// }
-
-//   return (
-//     <div className="bg-gray-50 min-h-screen">
-//       {/* Header */}
-//      <Header/>
-//       {/* Hero Section */}
-//       <section className="text-center py-20 bg-blue-100">
-//         <h2 className="text-4xl font-bold mb-4">Empowering You with Easy Microfinance Solutions!</h2>
-//         <p className="text-lg mb-6">Loans for weddings, homes, businesses, and education—all under one roof.</p>
-//         <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
-//           Get Started
-//         </button>
-//       </section>
-
-//       {/* Loan Categories */}
-//       <section className="container mx-auto py-16">
-//         <h3 className="text-3xl font-bold text-center mb-8">Loan Categories</h3>
-//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-//             <div
-//               className="bg-white p-6 shadow rounded-lg text-center hover:shadow-lg transition">
-//               <h4 className="text-xl font-bold mb-2">Wedding</h4>
-//               <p className="text-gray-600">Explore different subcategories to suit your needs.</p>
-//               <p className="text-gray-600">Max Limit : 500000</p>
-//               <p className="text-gray-600">Time Period : 3 year</p>
-//             </div>
-//             <div
-//               className="bg-white p-6 shadow rounded-lg text-center hover:shadow-lg transition">
-//               <h4 className="text-xl font-bold mb-2">Home Construction Loan</h4>
-//               <p className="text-gray-600">Explore different subcategories to suit your needs.</p>
-//               <p className="text-gray-600">Max Limit : 1000000</p>
-//               <p className="text-gray-600">Time Period : 5 year</p>
-//             </div>
-//             <div
-//               className="bg-white p-6 shadow rounded-lg text-center hover:shadow-lg transition">
-//               <h4 className="text-xl font-bold mb-2">Bussiness Startup Loan</h4>
-//               <p className="text-gray-600">Explore different subcategories to suit your needs.</p>
-//               <p className="text-gray-600">Max Limit : 1000000</p>
-//               <p className="text-gray-600">Time Period : 5 year</p>
-//             </div>
-//             <div
-//               className="bg-white p-6 shadow rounded-lg text-center hover:shadow-lg transition">
-//               <h4 className="text-xl font-bold mb-2">Wedding</h4>
-//               <p className="text-gray-600">Explore different subcategories to suit your needs.</p>
-//               <p className="text-gray-600">Max Limit : 100000</p>
-//               <p className="text-gray-600">Time Period : 5 year</p>
-//             </div>
-//         </div>
-//       </section>
-
-//       {/* Loan Calculator */}
-//       {/* <section className="bg-gray-100 py-16">
-//         <div className="container mx-auto">
-//           <h3 className="text-3xl font-bold text-center mb-8">Loan Calculator</h3>
-//           <div className="max-w-md mx-auto bg-white p-6 shadow rounded-lg">
-//             <form>
-//               <label className="block mb-4">
-//                 <span className="text-gray-700">Category</span>
-//                 <select className="w-full mt-2 p-2 border rounded-lg">
-//                   <option>Select a category</option>
-//                   <option>Wedding Loans</option>
-//                   <option>Home Construction Loans</option>
-//                   <option>Business Startup Loans</option>
-//                   <option>Education Loans</option>
-//                 </select>
-//               </label>
-//               <label className="block mb-4">
-//                 <span className="text-gray-700">Subcategory</span>
-//                 <select className="w-full mt-2 p-2 border rounded-lg">
-//                   <option>Select a subcategory</option>
-//                 </select>
-//               </label>
-//               <label className="block mb-4">
-//                 <span className="text-gray-700">Initial Deposit</span>
-//                 <input type="number" className="w-full mt-2 p-2 border rounded-lg" />
-//               </label>
-//               <label className="block mb-4">
-//                 <span className="text-gray-700">Loan Period</span>
-//                 <input type="number" className="w-full mt-2 p-2 border rounded-lg" />
-//               </label>
-//               <button onClick={handlecalculation} type="button" className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
-//                 Calculate
-//               </button>
-//             </form>
-//           </div>
-//         </div>
-//       </section> */}
-
-//       {/* Footer */}
-//       <Footer/>
-//     </div>
-//   )
-// }
-
-// export default Landingpage;
-
 import React, { useState } from "react"
-import Header from "../components/Header"
 import Footer from "../components/Footer"
+import { useNavigate } from "react-router-dom"
 
 const Landingpage = () => {
+  const navigate = useNavigate()
   const [showCalculator, setShowCalculator] = useState(false)
   const [selectedLoan, setSelectedLoan] = useState(null)
   const [loanAmount, setLoanAmount] = useState("")
@@ -187,7 +81,7 @@ const Landingpage = () => {
       <section className="text-center py-20 bg-blue-100">
         <h2 className="text-4xl font-bold mb-4">Empowering You with Easy Microfinance Solutions!</h2>
         <p className="text-lg mb-6">Loans for weddings, homes, businesses, and education—all under one roof.</p>
-        <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">Get Started</button>
+        <button onClick={()=> navigate('/LoanRequest')} className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">Loan Request</button>
       </section>
 
       {/* Loan Categories */}
