@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Footer from "../components/Footer"
 import { useNavigate } from "react-router-dom"
 
@@ -9,6 +9,14 @@ const Landingpage = () => {
   const [loanAmount, setLoanAmount] = useState("")
   const [loanPeriod, setLoanPeriod] = useState("")
   const [calculationResult, setCalculationResult] = useState(null)
+   const [logbutt , setlogbutt] = useState(false)
+
+    useEffect(() => {
+      const user = localStorage.getItem('useremail')
+      if (user) {
+        setlogbutt(true)
+      }
+    }, [])
 
   const loanCategories = [
     { name: "Wedding", maxLimit: 500000, maxPeriod: 3 },
@@ -57,7 +65,7 @@ const Landingpage = () => {
   }
 
   const handlelocalstorage = ()=>{
-    localStorage.setItem("adminemail" , "admin1234@gmail.com")
+    localStorage.setItem("adminemail" , "admin@gmail.com")
     navigate('/Login')
   }
 
@@ -71,7 +79,11 @@ const Landingpage = () => {
            <li><a href="/" className="hover:underline">Home</a></li>
            <li><a href="/LoanRegisterpage" className="hover:underline">Loan Registeration</a></li>
            <li><a href="#" className="hover:underline">Loan Categories</a></li>
+           { !logbutt ?
            <li><a href="#" className="hover:underline"><button onClick={handlelocalstorage} className="px-4 py-1 bg-green-700 rounded-2xl">Login</button></a></li>
+           :
+          ""
+           }
          </ul>
        </nav>
      </div>

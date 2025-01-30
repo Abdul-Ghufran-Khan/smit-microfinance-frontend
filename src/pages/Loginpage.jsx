@@ -43,8 +43,8 @@ const LoginPage = () => {
         navigate("/admin")
       }
       else{
-        alert("Your request has been delivered")
         navigate("/")
+        localStorage.setItem('useremail', formData.email)
       }
     }
   };

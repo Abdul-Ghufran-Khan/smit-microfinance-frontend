@@ -43,6 +43,7 @@ const LoanRegisterpage = () => {
     e.preventDefault();
     if (validate()) {
       console.log('Form Data:', formData);
+      localStorage.setItem('adminemail', "admin@gmail.com")
       localStorage.setItem('user', JSON.stringify(formData))
       navigate('/Login')
     }

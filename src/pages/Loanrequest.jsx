@@ -41,24 +41,24 @@ const Loanrequest = () => {
 
     // Add receipt details
     pdf.setFontSize(12)
-    pdf.text(
-      [
-        `Request ID: ${receipt.requestId}`,
-        `Date: ${receipt.requestDate}`,
-        `Name: ${receipt.name}`,
-        `CNIC: ${receipt.cnic}`,
-        `Loan Amount: ${receipt.loanAmount}`,
-        `Loan Period: ${receipt.loanPeriod} years`,
-      ],
-      20,
-      30,
-    )
+    const startY = 30
+    const lineHeight = 15 // Increased from 10 to 15
+    ;[
+      `Request ID: ${receipt.requestId}`,
+      `Date: ${receipt.requestDate}`,
+      `Name: ${receipt.name}`,
+      `CNIC: ${receipt.cnic}`,
+      `Loan Amount: ${receipt.loanAmount}`,
+      `Loan Period: ${receipt.loanPeriod} years`,
+    ].forEach((line, index) => {
+      pdf.text(line, 20, startY + index * lineHeight)
+    })
 
     // Generate QR code
     const qrCodeData = JSON.stringify(receipt)
     try {
       const qrCodeDataUrl = await QRCode.toDataURL(qrCodeData)
-      pdf.addImage(qrCodeDataUrl, "PNG", 150, 30, 40, 40)
+      pdf.addImage(qrCodeDataUrl, "PNG", 150, startY, 40, 40)
     } catch (error) {
       console.error("Error generating QR code:", error)
     }
@@ -141,7 +141,7 @@ const Loanrequest = () => {
         ) : (
           <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <h2 className="text-xl font-semibold mb-4">Loan Request Receipt</h2>
-            <div className="space-y-2">
+            <div className="space-y-5">
               <p>
                 <strong>Request ID:</strong> {receipt.requestId}
               </p>
