@@ -58,7 +58,7 @@ const Landingpage = () => {
 
   const handlelocalstorage = ()=>{
     localStorage.setItem("adminemail" , "admin1234@gmail.com")
-    window.location.href = "/Login"
+    navigate('/Login')
   }
 
   return (

@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import jsPDF from "jspdf"
+import QRCode from "qrcode"
 
 const Loanrequest = () => {
   const [formData, setFormData] = useState({
@@ -31,12 +32,14 @@ const Loanrequest = () => {
     setReceipt(receiptData)
   }
 
-  const downloadReceipt = () => {
+  const downloadReceipt = async () => {
     const pdf = new jsPDF()
 
+    // Add title
     pdf.setFontSize(18)
     pdf.text("Loan Request Receipt", 105, 15, { align: "center" })
 
+    // Add receipt details
     pdf.setFontSize(12)
     pdf.text(
       [
@@ -50,6 +53,15 @@ const Loanrequest = () => {
       20,
       30,
     )
+
+    // Generate QR code
+    const qrCodeData = JSON.stringify(receipt)
+    try {
+      const qrCodeDataUrl = await QRCode.toDataURL(qrCodeData)
+      pdf.addImage(qrCodeDataUrl, "PNG", 150, 30, 40, 40)
+    } catch (error) {
+      console.error("Error generating QR code:", error)
+    }
 
     pdf.save(`loan_request_${receipt.requestId}.pdf`)
   }
